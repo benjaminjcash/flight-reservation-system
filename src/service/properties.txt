@@ -1,0 +1,4 @@
+IFlightSvc = service.FlightSvcImpl
+ITravelerSvc = service.TravelerSvcImpl
+ILoginSvc = service.LoginSvcImpl
+IItinerarySvc = service.ItinerarySvcImpl
