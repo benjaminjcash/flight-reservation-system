@@ -25,4 +25,12 @@ public class TravelerMgr {
 		return profile;
 	}
 	
+	public boolean deleteProfile(String username) throws ServiceLoadException {
+		boolean success = false;
+		factory = Factory.getInstance();
+		ITravelerSvc travelerSvc = (ITravelerSvc)factory.getService(ITravelerSvc.NAME);
+		success = travelerSvc.deleteProfile(username);
+		return success;
+	}
+	
 }

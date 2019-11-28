@@ -25,7 +25,19 @@ public class TravelerMgrTest extends TestCase {
 		}
 		catch (ServiceLoadException e) {
 			System.out.println(e.getMessage());
-		}
+		}	
+	}
+	
+	public void testCreateProfile() {
+		try {
+			setUp();
+			Traveler newProfile = new Traveler();
+			newProfile.setUsername("cptest");
+			newProfile.setPassword("Testing123");
 			
+		}
+		catch (ServiceLoadException e) {
+			
+		}
 	}
 }

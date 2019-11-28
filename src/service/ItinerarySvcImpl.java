@@ -1,8 +1,10 @@
 package service;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Arrays;
 import domain.Flight;
 import domain.Itinerary;
 import domain.Traveler;
@@ -12,29 +14,51 @@ import exceptions.ServiceLoadException;
 public class ItinerarySvcImpl implements IItinerarySvc {
 	
 	// TODO - VERY HARD
-	public Itinerary[] searchForItinerary(String departureCode, LocalDateTime departureTime, String arrivalCode, LocalDateTime arrivalTime, Integer numberOfPassengers,
-			boolean oneWay, boolean roundTrip)
-			Flight[] flights = new Flight[0];
-		// Get all flights
+	public searchForFlights(String departureCode, LocalDateTime departureTime, Integer numberOfPassengers) {		
+		
 		Factory factory = Factory.getInstance();
+		List<Flight> flights = new ArrayList<>();
+		
 		try {
 			IFlightSvc flightSvc = (IFlightSvc)factory.getService(IFlightSvc.NAME);
-			flights = flightSvc.getRecords();
-			
-			
+			Flight[] fs = flightSvc.getRecords();
+			flights = Arrays.asList(fs);	
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
 		
+		// Filter by departure code
+		List<Flight> temp = new ArrayList<>();
+		for(int i = 0; i < flights.size(); i++) {
+			Flight curr = flights.get(i);
+			String dc = curr.getDepartureCode();
+			
+			if(departureCode.equals(dc)) {
+				temp.add(curr);
+				String code = flights.get(i).getFlightNumber(); 
+				System.out.println("Codes matched for flight " + code);
+			}
+		}
+		flights = temp;
 		
-		// Search by departure code
+		// Filter by departure time (match day)
+		List<Flight> temp2 = new ArrayList<>();
+		for(int i = 0; i < flights.size(); i++) {
+			Flight curr = flights.get(i);
+			LocalDateTime dt = curr.getDepartureTime();
+			LocalDate d = dt.toLocalDate();
+			LocalDate departureDate = departureTime.toLocalDate();
+			
+			if(d.equals(departureDate)) {
+				temp2.add(curr);
+				String code = flights.get(i).getFlightNumber(); 
+				System.out.println("Codes matched for flight " + code);
+			}
+		}
+		flights = temp2;
 		
-		
-		// Query the database for flights and build itineraries based on the search parameters
-		Itinerary[] itineraryList = new Itinerary[] {};
-		
-		return itineraryList;	
+		return flights;
 	}
 	
 	public boolean reserveItinerary(Itinerary itinerary, String username) throws ServiceLoadException {

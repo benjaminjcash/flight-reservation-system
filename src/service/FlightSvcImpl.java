@@ -1,6 +1,6 @@
 package service;
 import java.io.ObjectOutputStream;
-
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.FileInputStream;
@@ -162,8 +162,13 @@ public class FlightSvcImpl implements IFlightSvc {
 		System.out.println("===All Flights===");
 		for(int i = 0; i < allFlights.length; i++) {
 			Flight curr = allFlights[i];
+			LocalDateTime cdt = curr.getDepartureTime();
+			LocalDateTime cat = curr.getArrivalTime();
 			System.out.println(" " + (i + 1) + ". Flight " + curr.getFlightNumber());
 			System.out.println("  " + curr.getDepartureCode() + " to " + curr.getArrivalCode());
+			String ddts = "  " + cdt.getDayOfWeek() + " " + cdt.getDayOfMonth() + " " + cdt.getHour() + ":" + cdt.getMinute() + cdt.getSecond();
+			String adts = "  " + cat.getDayOfWeek() + " " + cat.getDayOfMonth() + " " + cat.getHour() + ":" + cat.getMinute() + cat.getSecond();
+			System.out.println(ddts + "  -" + adts);
 		}
 	}
 }

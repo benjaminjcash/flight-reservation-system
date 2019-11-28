@@ -25,53 +25,42 @@ public class run {
 		
 		/////------- FLIGHTS -------/////
 		
-//		Flight f1 = new Flight();
-//		f1.setFlightNumber("112");
-//		f1.setAirlineCode("DL");
-//		f1.setDepartureCode("DEN");
-//		LocalDateTime dep = LocalDateTime.of(2019, Month.DECEMBER, 2, 1, 20);
-//		f1.setDepartureTime(dep);
-//		f1.setArrivalCode("ATL");
-//		LocalDateTime arr = LocalDateTime.of(2019, Month.DECEMBER, 2, 4, 20);
-//		f1.setArrivalTime(arr);
-//		f1.setBusinessTicket(800.00);
-//		f1.setEconomyTicket(650.00);
-//		Flight f2 = new Flight();
-//		f2.setFlightNumber("699");
-//		f2.setAirlineCode("DL");
-//		f2.setDepartureCode("ATL");
-//		LocalDateTime dep2 = LocalDateTime.of(2019, Month.DECEMBER, 7, 14, 20);
-//		f2.setDepartureTime(dep2);
-//		f2.setArrivalCode("DEN");
-//		LocalDateTime arr2 = LocalDateTime.of(2019, Month.DECEMBER, 7, 17, 20);
-//		f2.setArrivalTime(arr2);
-//		f2.setBusinessTicket(1000.00);
-//		f2.setEconomyTicket(825.00);
-//		Flight f3 = new Flight();
-//		f3.setFlightNumber("550");
-//		f3.setAirlineCode("UA");
-//		f3.setDepartureCode("BHM");
-//		LocalDateTime dep3 = LocalDateTime.of(2019, Month.DECEMBER, 14, 5, 20);
-//		f3.setDepartureTime(dep3);
-//		f3.setArrivalCode("FLG");
-//		LocalDateTime arr3 = LocalDateTime.of(2019, Month.DECEMBER, 14, 9, 20);
-//		f3.setArrivalTime(arr3);
-//		f3.setBusinessTicket(700.00);
-//		f3.setEconomyTicket(550.00);
-//		Flight f4 = new Flight();
-//		f4.setFlightNumber("333");
-//		f4.setAirlineCode("UA");
-//		f4.setDepartureCode("FLG");
-//		LocalDateTime dep4 = LocalDateTime.of(2019, Month.DECEMBER, 20, 3, 20);
-//		f4.setDepartureTime(dep4);
-//		f4.setArrivalCode("BHM");
-//		LocalDateTime arr4 = LocalDateTime.of(2019, Month.DECEMBER, 20, 7, 20);
-//		f4.setArrivalTime(arr4);
-//		f4.setBusinessTicket(830.00);
-//		f4.setEconomyTicket(790.00);
+		Flight f1 = new Flight();
+		f1.setFlightNumber("112");
+		f1.setAirlineCode("DL");
+		f1.setDepartureCode("DEN");
+		LocalDateTime d1 = LocalDateTime.of(2019, Month.DECEMBER, 2, 1, 20);
+		f1.setDepartureTime(d1);
+		f1.setArrivalCode("ATL");
+		LocalDateTime a1 = LocalDateTime.of(2019, Month.DECEMBER, 2, 4, 20);
+		f1.setArrivalTime(a1);
+		f1.setBusinessTicket(200.00);
+		f1.setEconomyTicket(160.00);
+		Flight f2 = new Flight();
+		f2.setFlightNumber("230");
+		f2.setAirlineCode("DL");
+		f2.setDepartureCode("DEN");
+		LocalDateTime d2 = LocalDateTime.of(2019, Month.DECEMBER, 2, 14, 45);
+		f2.setDepartureTime(d2);
+		f2.setArrivalCode("ATL");
+		LocalDateTime a2 = LocalDateTime.of(2019, Month.DECEMBER, 2, 17, 45);
+		f2.setArrivalTime(a2);
+		f2.setBusinessTicket(150.00);
+		f2.setEconomyTicket(100.00);
+		Flight f3 = new Flight();
+		f3.setFlightNumber("320");
+		f3.setAirlineCode("DL");
+		f3.setDepartureCode("DEN");
+		LocalDateTime d3 = LocalDateTime.of(2019, Month.DECEMBER, 9, 20, 45);
+		f3.setDepartureTime(d3);
+		f3.setArrivalCode("ATL");
+		LocalDateTime a3 = LocalDateTime.of(2019, Month.DECEMBER, 9, 23, 45);
+		f3.setArrivalTime(a3);
+		f3.setBusinessTicket(170.00);
+		f3.setEconomyTicket(130.00);
 	
-//		Flight[] fls = new Flight[] {f1, f2, f3, f4};
-//		flightSvc.addRecords(fls);
+		Flight[] fls = new Flight[] {f1, f2, f3};
+		flightSvc.addRecords(fls);
 		
 		/////------- TRAVELERS -------/////
 		
@@ -132,18 +121,29 @@ public class run {
 //			System.out.println(e.getMessage());		
 //		}
 		
-		System.out.println();
+		LocalDateTime d4 = LocalDateTime.of(2019, Month.DECEMBER, 7, 20, 45);
+		itinerarySvc.searchForFlights("DEN", d4, 12);
+		
+		
+		
+		
+		
+		
+		
+		
+//		System.out.println();
 		try { flightSvc.printAllFlights(); }
 		catch(Exception e) { System.out.println(e); }
-		System.out.println();
-		try { travelerSvc.printAllTravelers(); }
-		catch(Exception e) { System.out.println(e); }
-		System.out.println();
-		try { travelerSvc.printItineraries("herecomesjohnny"); }
-		catch(Exception e) { System.out.println(e); }
-		System.out.println();
-		try { travelerSvc.printItineraries("sallyskis"); }
-		catch(Exception e) { System.out.println(e); }
+//		System.out.println();
+//		try { travelerSvc.printAllTravelers(); }
+//		catch(Exception e) { System.out.println(e); }
+//		System.out.println();
+//		try { travelerSvc.printItineraries("herecomesjohnny"); }
+//		catch(Exception e) { System.out.println(e); }
+//		System.out.println();
+//		try { travelerSvc.printItineraries("sallyskis"); }
+//		catch(Exception e) { System.out.println(e); }
+		
 		
 	}
 }
