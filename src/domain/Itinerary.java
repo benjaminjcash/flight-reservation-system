@@ -1,6 +1,5 @@
-package domain;
+package domain; 
 
-import java.util.Arrays; 
 import java.io.Serializable;
 
 public class Itinerary implements Serializable {
@@ -8,16 +7,16 @@ public class Itinerary implements Serializable {
 	public Itinerary() {}
 	
 	/* Properties */
-	private Integer id;
+	private String id;
 	private Double totalCost;
 	private Flight[] flights;
 	private String status;
 	
 	/* Getters and Setters */
-	public int getId() {
+	public String getId() {
 		return this.id;
 	}
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
@@ -45,13 +44,9 @@ public class Itinerary implements Serializable {
 	/* Equals */
 	public boolean equals(Itinerary itinerary) {
 		boolean equals = true;
-
-		if(itinerary.getId() != this.id) {
-			equals = false;
-		}
 		
-		boolean sameFlights = Arrays.equals(this.flights, itinerary.getFlights());
-		if(!sameFlights) {
+		String id = itinerary.getId();
+		if(!id.equals(this.id)) {
 			equals = false;
 		}
 		

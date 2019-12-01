@@ -1,5 +1,6 @@
 package service;
 import java.io.ObjectOutputStream;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 
 import exceptions.RecordNotFoundException;
+import exceptions.RecordNotAddedException;
 import domain.Flight;
 
 public class FlightSvcImpl implements IFlightSvc {
@@ -170,5 +172,20 @@ public class FlightSvcImpl implements IFlightSvc {
 			String adts = "  " + cat.getDayOfWeek() + " " + cat.getDayOfMonth() + " " + cat.getHour() + ":" + cat.getMinute() + cat.getSecond();
 			System.out.println(ddts + "  -" + adts);
 		}
+	}
+	
+	public Flight createFlight(String flightNumber, String airlineCode, String airlineName, String departureCode, LocalDateTime departureTime, 
+			String arrivalCode, LocalDateTime arrivalTime, double businessTicket, double economyTicket) {
+		Flight f = new Flight();
+		f.setFlightNumber(flightNumber);
+		f.setAirlineCode(airlineCode);
+		f.setAirlineName(airlineName);
+		f.setDepartureCode(departureCode);
+		f.setDepartureTime(departureTime);
+		f.setArrivalCode(arrivalCode);
+		f.setArrivalTime(arrivalTime);
+		f.setBusinessTicket(businessTicket);
+		f.setEconomyTicket(economyTicket);
+		return f;
 	}
 }

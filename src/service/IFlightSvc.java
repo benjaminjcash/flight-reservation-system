@@ -1,6 +1,6 @@
 package service;
 import java.io.IOException;
-
+import java.time.LocalDateTime;
 import exceptions.RecordNotFoundException;
 import domain.Flight;
 
@@ -19,4 +19,7 @@ public interface IFlightSvc extends IService {
 	public Flight[] getRecords() throws IOException, ClassNotFoundException, RecordNotFoundException;
 	
 	public void printAllFlights() throws IOException, ClassNotFoundException, RecordNotFoundException;
+	
+	public Flight createFlight(String flightNumber, String airlineCode, String airlineName, String departureCode, LocalDateTime departureTime, 
+			String arrivalCode, LocalDateTime arrivalTime, double businessTicket, double economyTicket);
 }

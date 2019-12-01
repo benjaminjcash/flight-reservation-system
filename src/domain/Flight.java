@@ -8,9 +8,9 @@ public class Flight implements Serializable {
 	public Flight() {}
 	
 	/* Properties */
+	private String flightNumber;
 	private String airlineCode;
 	private String airlineName;
-	private String flightNumber;
 	private String departureCode;
 	private LocalDateTime departureTime;
 	private String arrivalCode;
@@ -19,6 +19,13 @@ public class Flight implements Serializable {
 	private double economyTicket;
 	
 	/* Getters and Setters */
+	public String getFlightNumber() {
+		return this.flightNumber;
+	}
+	public void setFlightNumber(String num) {
+		this.flightNumber = num;
+	}
+	
 	public String getAirlineCode() {
 		return this.airlineCode;
 	}
@@ -31,13 +38,6 @@ public class Flight implements Serializable {
 	}
 	public void setAirlineName(String name) {
 		this.airlineName = name;
-	}
-	
-	public String getFlightNumber() {
-		return this.flightNumber;
-	}
-	public void setFlightNumber(String num) {
-		this.flightNumber = num;
 	}
 	
 	public String getDepartureCode() {
@@ -84,7 +84,8 @@ public class Flight implements Serializable {
 	
 	/* Equals */
 	public boolean equals(Flight flight) {
-		if(flight.getFlightNumber() == this.flightNumber) {
+		String fn = flight.getFlightNumber();
+		if(fn.equals(this.flightNumber)) {
 			return true;
 		} else {
 			return false;

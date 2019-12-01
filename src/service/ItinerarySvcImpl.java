@@ -1,64 +1,36 @@
 package service;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Arrays;
-import domain.Flight;
 import domain.Itinerary;
 import domain.Traveler;
 import exceptions.RecordNotFoundException;
 import exceptions.ServiceLoadException;
 
 public class ItinerarySvcImpl implements IItinerarySvc {
-	
-	// TODO - VERY HARD
-	public searchForFlights(String departureCode, LocalDateTime departureTime, Integer numberOfPassengers) {		
-		
+	private ITravelerSvc travelerSvc;
+	private void setup() throws ServiceLoadException {
 		Factory factory = Factory.getInstance();
-		List<Flight> flights = new ArrayList<>();
-		
-		try {
-			IFlightSvc flightSvc = (IFlightSvc)factory.getService(IFlightSvc.NAME);
-			Flight[] fs = flightSvc.getRecords();
-			flights = Arrays.asList(fs);	
-		}
-		catch(Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		// Filter by departure code
-		List<Flight> temp = new ArrayList<>();
-		for(int i = 0; i < flights.size(); i++) {
-			Flight curr = flights.get(i);
-			String dc = curr.getDepartureCode();
-			
-			if(departureCode.equals(dc)) {
-				temp.add(curr);
-				String code = flights.get(i).getFlightNumber(); 
-				System.out.println("Codes matched for flight " + code);
+		travelerSvc = (ITravelerSvc) factory.getService(ITravelerSvc.NAME);
+	}
+	
+	public Itinerary fetchItinerary(String itineraryId, String username) throws RecordNotFoundException, ServiceLoadException {
+		setup();
+		Traveler profile = travelerSvc.fetchProfile(username);
+		Itinerary[] il = profile.getItineraryList();
+		Itinerary itinerary = new Itinerary();
+		for(int i = 0; i < il.length; i++) {
+			Itinerary ci = il[i];
+			String id = ci.getId();
+			if(id.equals(itineraryId)) {
+				itinerary = ci;
 			}
 		}
-		flights = temp;
-		
-		// Filter by departure time (match day)
-		List<Flight> temp2 = new ArrayList<>();
-		for(int i = 0; i < flights.size(); i++) {
-			Flight curr = flights.get(i);
-			LocalDateTime dt = curr.getDepartureTime();
-			LocalDate d = dt.toLocalDate();
-			LocalDate departureDate = departureTime.toLocalDate();
-			
-			if(d.equals(departureDate)) {
-				temp2.add(curr);
-				String code = flights.get(i).getFlightNumber(); 
-				System.out.println("Codes matched for flight " + code);
-			}
+		String ciid = itinerary.getId();
+		if(ciid.equals(itineraryId)) {
+			return itinerary;
+		} else {
+			throw new RecordNotFoundException("itinerary not found");
 		}
-		flights = temp2;
-		
-		return flights;
 	}
 	
 	public boolean reserveItinerary(Itinerary itinerary, String username) throws ServiceLoadException {
@@ -80,7 +52,7 @@ public class ItinerarySvcImpl implements IItinerarySvc {
 			travelerSvc.updateItineraryList(username, newList);
 			didWrite = true;
 		} else {
-			// Build list out of old one and new value
+			// Add new itinerary to list
 			int size = currentList.length + 1;
 			Itinerary[] newList = new Itinerary[size];
 			for(int i = 0; i < newList.length; i++) {
@@ -100,7 +72,6 @@ public class ItinerarySvcImpl implements IItinerarySvc {
 	
 	// TODO
 	public boolean bookItinerary(String itineraryId, String username) {
-		System.out.println("TravelerSvcImpl.bookItinerary called");
 		// Fetch profile data from database with given username
 		// Locate itinerary matching the provided Id in traveler's itinerary list
 		// Update itinerary status to 'Booked'
@@ -110,17 +81,16 @@ public class ItinerarySvcImpl implements IItinerarySvc {
 		return didWrite;
 	}
 	
-	public boolean deleteItinerary(int itineraryId, String username) throws ServiceLoadException, RecordNotFoundException {
+	public boolean deleteItinerary(String itineraryId, String username) throws ServiceLoadException, RecordNotFoundException {
+		setup();
 		boolean didDelete = false;
-		Factory factory = Factory.getInstance();
-		ITravelerSvc travelerSvc = (ITravelerSvc)factory.getService(ITravelerSvc.NAME);
 		Traveler profile = travelerSvc.fetchProfile(username);
 		Itinerary[] cis = profile.getItineraryList();
 		List<Integer> indices = new ArrayList<>();
 		for(int i = 0; i < cis.length; i++) {
 			Itinerary ci = cis[i];
-			int id = ci.getId();
-			if(id == itineraryId) {
+			String id = ci.getId();
+			if(id.equals(itineraryId)) {
 				indices.add(i);
 			}
 		}

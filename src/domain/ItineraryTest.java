@@ -9,31 +9,23 @@ public class ItineraryTest extends TestCase {
 		f1.setFlightNumber("101");
 		Flight f2 = new Flight();
 		f2.setFlightNumber("999");
-		Flight f3 = new Flight();
-		f3.setFlightNumber("550");
 		
 		Flight[] fs1 = new Flight[] { f1, f2 };
-		Flight[] fs2 = new Flight[] { f1, f3 };
 		
 		Itinerary i1 = new Itinerary();
-		i1.setId(0012);
+		i1.setId("0012");
 		i1.setFlights(fs1);
 		
 		Itinerary i2 = new Itinerary();
-		i2.setId(0013);
+		i2.setId("0013");
 		i2.setFlights(fs1);
 		
 		Itinerary i3 = new Itinerary();
-		i3.setId(0012);
-		i3.setFlights(fs2);
-		
-		Itinerary i4 = new Itinerary();
-		i4.setId(0012);
-		i4.setFlights(fs1);
+		i3.setId("0012");
+		i3.setFlights(fs1);
 		
 		assertFalse("i2 equals i1", i2.equals(i1));
-		assertFalse("i3 equals i1", i3.equals(i1));
-		assertTrue("i4 does not equal i1", i4.equals(i1));
+		assertTrue("i3 equals i1", i3.equals(i1));
 		
 		System.out.println("ItineraryTest.testEquals passed!");
 	}
@@ -42,7 +34,7 @@ public class ItineraryTest extends TestCase {
 		System.out.println("starting ItineraryTest.testValidate");
 		
 		Itinerary i1 = new Itinerary();
-		i1.setId(0001);
+		i1.setId("0001");
 		i1.setTotalCost(564.53);
 		
 		Flight f1 = new Flight();
@@ -54,6 +46,6 @@ public class ItineraryTest extends TestCase {
 		
 		assertTrue("i1 is not valid Itinerary", i1.validate());
 		
-		System.out.println("ItineraryTest.testEquals passed!");
+		System.out.println("ItineraryTest.testValidate passed!");
 	}
 }

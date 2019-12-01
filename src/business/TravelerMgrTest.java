@@ -1,31 +1,28 @@
 package business;
-import service.Factory;
-import service.ITravelerSvc;
+
+import java.io.IOException;
+
 import domain.Traveler;
 import exceptions.ServiceLoadException;
 import junit.framework.TestCase;
 
 public class TravelerMgrTest extends TestCase {
-	private Factory factory;
-	private ITravelerSvc travelerSvc;
+	private TravelerMgr travelerMgr;
 	
 	public void setUp() throws ServiceLoadException {
-		factory = Factory.getInstance();
-		travelerSvc = (ITravelerSvc)factory.getService(ITravelerSvc.NAME);
+		travelerMgr = new TravelerMgr();
 	}
 	
 	public void testFetchProfile() {
 		try {
 			setUp();
 			String username = "sallyskis";
-			Traveler profile = travelerSvc.fetchProfile(username);
+			Traveler profile = travelerMgr.fetchProfile(username);
 			String name = profile.getName();
 			assertTrue("Did not fetch correct profile", name.equals("Sally Summers"));
 			System.out.println("TravelerMgrTest.testFetchProfile passed!");
 		}
-		catch (ServiceLoadException e) {
-			System.out.println(e.getMessage());
-		}	
+		catch (ServiceLoadException e) { System.out.println(e.getMessage()); }	
 	}
 	
 	public void testCreateProfile() {
@@ -34,10 +31,40 @@ public class TravelerMgrTest extends TestCase {
 			Traveler newProfile = new Traveler();
 			newProfile.setUsername("cptest");
 			newProfile.setPassword("Testing123");
-			
+			newProfile.setName("CP Test");
+			boolean success = travelerMgr.createProfile(newProfile);
+			assertTrue("Profile was not created", success);
+			Traveler profile = travelerMgr.fetchProfile("cptest");
+			String name = profile.getName();
+			assertTrue("Profile was not found", name.equals("CP Test"));
+			System.out.println("TravelerMgrTest.testCreateProfile passed!");
 		}
-		catch (ServiceLoadException e) {
-			
-		}
+		catch (ServiceLoadException e) { System.out.println(e.getMessage()); }
+		catch (ClassNotFoundException e) { System.out.println(e.getMessage()); }
+		catch (IOException e) { System.out.println(e.getMessage()); }
 	}
+	
+	public void testDeleteProfile() {
+		try {
+			setUp();
+			Traveler newProfile = new Traveler();
+			newProfile.setUsername("cptest");
+			newProfile.setPassword("Testing123");
+			newProfile.setName("CP Test");
+			boolean success = travelerMgr.createProfile(newProfile);
+			assertTrue("Profile was not created", success);
+			Traveler profile = travelerMgr.fetchProfile("cptest");
+			String name = profile.getName();
+			assertTrue("Profile was not found", name.equals("CP Test"));
+			boolean deleteSuccess = travelerMgr.deleteProfile("cptest");
+			assertTrue("Profile was not deleted", deleteSuccess);
+			Traveler deletedProfile = travelerMgr.fetchProfile("cptest");
+			assertTrue("Profile was not null", deletedProfile == null);
+			System.out.println("TravelerMgrTest.testCreateProfile passed!");
+		}
+		catch (ServiceLoadException e) { System.out.println(e.getMessage()); }
+		catch (ClassNotFoundException e) { System.out.println(e.getMessage()); }
+		catch (IOException e) { System.out.println(e.getMessage()); }
+	}
+	
 }
