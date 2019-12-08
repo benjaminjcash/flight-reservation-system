@@ -22,7 +22,7 @@ public class TravelerSvcImpl implements ITravelerSvc {
 			traveler = getRecord(username);
 		}
 		catch(RecordNotFoundException e) {
-			System.out.println(e.getMessage());
+//			System.out.println(e.getMessage());
 			return null;
 		}
 		catch(IOException e) {
