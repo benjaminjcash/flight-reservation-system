@@ -1,5 +1,6 @@
 import java.io.IOException;
 
+
 import java.time.LocalDateTime;
 import java.time.Month;
 
@@ -18,16 +19,15 @@ import presentation.LoginUI;
 
 public class run {
 	
-	public static void main(String[] args) throws ClassNotFoundException, IOException, ServiceLoadException, RecordNotFoundException {
-		Factory factory = Factory.getInstance();
-		IFlightSvc flightSvc = (IFlightSvc)factory.getService(IFlightSvc.NAME);
-		ITravelerSvc travelerSvc = (ITravelerSvc)factory.getService(ITravelerSvc.NAME);
-		IItinerarySvc itinerarySvc = (IItinerarySvc)factory.getService(IItinerarySvc.NAME);
-		ILoginSvc loginSvc = (ILoginSvc)factory.getService(ILoginSvc.NAME);
-		
-		System.out.println();
-		System.out.println("----------Data----------");
-		System.out.println();
+//	public static void main(String[] args) throws ClassNotFoundException, IOException, ServiceLoadException, RecordNotFoundException {
+//		Factory factory = Factory.getInstance();
+//		IFlightSvc flightSvc = (IFlightSvc)factory.getService(IFlightSvc.NAME);
+//		ITravelerSvc travelerSvc = (ITravelerSvc)factory.getService(ITravelerSvc.NAME);
+//		IItinerarySvc itinerarySvc = (IItinerarySvc)factory.getService(IItinerarySvc.NAME);
+//		ILoginSvc loginSvc = (ILoginSvc)factory.getService(ILoginSvc.NAME);
+//		System.out.println();
+//		System.out.println("----------Data----------");
+//		System.out.println();
 		
 		/////------- FLIGHTS -------/////
 		
@@ -64,21 +64,21 @@ public class run {
 
 		/////------- CONSOLE -------/////
 
-		try { flightSvc.printAllFlights(); }
-		catch(Exception e) { System.out.println(e); }
-		System.out.println();
-		try { travelerSvc.printAllTravelers(); }
-		catch(Exception e) { System.out.println(e); }
-		System.out.println();
-		try { travelerSvc.printItineraries("herecomesjohnny"); }
-		catch(Exception e) { System.out.println(e); }
-		System.out.println();
-		try { travelerSvc.printItineraries("sallyskis"); }
-		catch(Exception e) { System.out.println(e); }
-		System.out.println();
+//		try { flightSvc.printAllFlights(); }
+//		catch(Exception e) { System.out.println(e); }
+//		System.out.println();
+//		try { travelerSvc.printAllTravelers(); }
+//		catch(Exception e) { System.out.println(e); }
+//		System.out.println();
+//		try { travelerSvc.printItineraries("herecomesjohnny"); }
+//		catch(Exception e) { System.out.println(e); }
+//		System.out.println();
+//		try { travelerSvc.printItineraries("sallyskis"); }
+//		catch(Exception e) { System.out.println(e); }
+//		System.out.println();
 
 		/////------- UI -------/////
-		LoginUI loginPage = new LoginUI("Login");
-		System.out.println("----------Application Running----------");
-	}
+//		LoginUI loginPage = new LoginUI("Login");
+//		System.out.println("----------Application Running----------");
+//	}
 }

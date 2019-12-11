@@ -13,7 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginUI extends JFrame {
+public class LoginUI extends JInternalFrame {
 	private JLabel usernameLbl = new JLabel("Username");
 	private JLabel passwordLbl = new JLabel("Password");
 	private JTextField usernameFld = new JTextField(10);
@@ -21,7 +21,7 @@ public class LoginUI extends JFrame {
 	private JButton loginBtn = new JButton("Login");
 	
 	public LoginUI(String name) {
-		super(name);
+		super(name, false, true);
 		
 		Container container = getContentPane();
 		GridLayout layout = new GridLayout(3, 2);
@@ -59,7 +59,6 @@ public class LoginUI extends JFrame {
 			}
 		);
 		
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		pack();
 		setVisible(true);
 	}
