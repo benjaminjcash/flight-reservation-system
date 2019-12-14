@@ -35,10 +35,10 @@ public class FlightMgr {
 		return flightSvc.deleteFlight(flightNumber);
 	}
 	
-	public Flight createFlight(String flightNumber, String airlineCode, String airlineName, String departureCode, LocalDateTime departureTime, 
+	public Flight createFlight(String flightNumber, String airlineCode, String departureCode, LocalDateTime departureTime, 
 			String arrivalCode, LocalDateTime arrivalTime, double businessTicket, double economyTicket) throws ServiceLoadException {
 		setup();
-		return flightSvc.createFlight(flightNumber, airlineCode, airlineName, departureCode, departureTime, arrivalCode, arrivalTime, businessTicket, economyTicket);
+		return flightSvc.createFlight(flightNumber, airlineCode, departureCode, departureTime, arrivalCode, arrivalTime, businessTicket, economyTicket);
 	}
 	
 	public List<Flight> searchForFlights(String departureCode, LocalDateTime departureTime, Integer numberOfPassengers) {		

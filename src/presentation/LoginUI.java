@@ -20,8 +20,8 @@ public class LoginUI extends JInternalFrame {
 	private JPasswordField passwordFld = new JPasswordField(10);
 	private JButton loginBtn = new JButton("Login");
 	
-	public LoginUI(String name) {
-		super(name, false, true);
+	public LoginUI() {
+		super("Login", false, true);
 		
 		Container container = getContentPane();
 		GridLayout layout = new GridLayout(3, 2);

@@ -29,16 +29,12 @@ public class FlightTest extends TestCase {
 		
 		Flight f1 = new Flight();
 		f1.setAirlineCode("WN");
-		f1.setAirlineName("Southwest Airlines");
 		f1.setFlightNumber("770");
 		f1.setDepartureCode("DEN");
 		f1.setArrivalCode("ATL");
 		
-//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy h:m a");
 		LocalDateTime dep = LocalDateTime.of(2019, Month.DECEMBER, 8, 11, 20);
-//		String departure = dep.format(formatter);
 		LocalDateTime arr = LocalDateTime.of(2019, Month.DECEMBER, 12, 14, 45);
-//		String arrival = arr.format(formatter);
 		
 		f1.setDepartureTime(dep);
 		f1.setArrivalTime(arr);

@@ -26,7 +26,7 @@ public class ItinerarySvcImpl implements IItinerarySvc {
 			}
 		}
 		String ciid = itinerary.getId();
-		if(ciid.equals(itineraryId)) {
+		if(ciid != null && ciid.equals(itineraryId)) {
 			return itinerary;
 		} else {
 			throw new RecordNotFoundException("itinerary not found");

@@ -3,7 +3,9 @@ import java.io.ObjectOutputStream;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -14,6 +16,9 @@ import exceptions.RecordNotAddedException;
 import domain.Flight;
 
 public class FlightSvcImpl implements IFlightSvc {
+	
+	private Map<String, String> airports = new HashMap<>();
+	private Map<String, String> airlines = new HashMap<>();
 	
 	public Flight fetchFlight(String flightNumber) {
 		Flight flight = new Flight();
@@ -160,26 +165,45 @@ public class FlightSvcImpl implements IFlightSvc {
 	}
 	
 	public void printAllFlights() throws IOException, ClassNotFoundException, RecordNotFoundException {
+		
+		airports.put("BUR", "Burbank");
+		airports.put("PSP", "Palm Springs");
+		airports.put("BHM", "Birmingham International Airport");
+		airports.put("DEN", "Denver International Airport");
+		airports.put("ATL", "Atlanta Hartsfield International Airport");
+		airports.put("ANC", "Anchorage International Airport");
+		airports.put("SEA", "Seattle, Tacoma International Airport");
+		airports.put("CRW", "Charleston");
+		airports.put("IAD", "Washington, Dulles International Airport");
+		
+		airlines.put("AA", "American Airlines");
+		airlines.put("AS", "Alaska Airlines");
+		airlines.put("WN", "Southwest Airlines");
+		airlines.put("DL", "Delta Airlines");
+		
 		Flight[] allFlights = getRecords();
 		System.out.println("===All Flights===");
+		System.out.println("");
 		for(int i = 0; i < allFlights.length; i++) {
 			Flight curr = allFlights[i];
 			LocalDateTime cdt = curr.getDepartureTime();
 			LocalDateTime cat = curr.getArrivalTime();
-			System.out.println(" " + (i + 1) + ". Flight " + curr.getFlightNumber());
-			System.out.println("  " + curr.getDepartureCode() + " to " + curr.getArrivalCode());
-			String ddts = "  " + cdt.getDayOfWeek() + " " + cdt.getDayOfMonth() + " " + cdt.getHour() + ":" + cdt.getMinute() + cdt.getSecond();
-			String adts = "  " + cat.getDayOfWeek() + " " + cat.getDayOfMonth() + " " + cat.getHour() + ":" + cat.getMinute() + cat.getSecond();
-			System.out.println(ddts + "  -" + adts);
+			System.out.println(" " + (i + 1) + ". " + airlines.get(curr.getAirlineCode()) + " Flight "  + curr.getFlightNumber());
+			System.out.println("  " + airports.get(curr.getDepartureCode()) + " to " + airports.get(curr.getArrivalCode()));
+			String ddts = "  " + cdt.getDayOfWeek() + ", " + cdt.getMonth() + " " + cdt.getDayOfMonth() + " " + cdt.getHour() + ":" + cdt.getMinute() + cdt.getSecond();
+			String adts = "  " + cat.getDayOfWeek() + ", " + cdt.getMonth() + " " + cat.getDayOfMonth() + " " + cat.getHour() + ":" + cat.getMinute() + cat.getSecond();
+			System.out.println("  Departure Time:" + ddts);
+			System.out.println("  Arrival Time:" + adts);
+			System.out.println("  Business Class Ticket: $" + curr.getbusinessTicket());
+			System.out.println("  Economy Class Ticket: $" + curr.getEconomyTicket());
 		}
 	}
 	
-	public Flight createFlight(String flightNumber, String airlineCode, String airlineName, String departureCode, LocalDateTime departureTime, 
+	public Flight createFlight(String flightNumber, String airlineCode, String departureCode, LocalDateTime departureTime, 
 			String arrivalCode, LocalDateTime arrivalTime, double businessTicket, double economyTicket) {
 		Flight f = new Flight();
 		f.setFlightNumber(flightNumber);
 		f.setAirlineCode(airlineCode);
-		f.setAirlineName(airlineName);
 		f.setDepartureCode(departureCode);
 		f.setDepartureTime(departureTime);
 		f.setArrivalCode(arrivalCode);

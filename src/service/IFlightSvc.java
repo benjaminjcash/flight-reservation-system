@@ -20,6 +20,6 @@ public interface IFlightSvc extends IService {
 	
 	public void printAllFlights() throws IOException, ClassNotFoundException, RecordNotFoundException;
 	
-	public Flight createFlight(String flightNumber, String airlineCode, String airlineName, String departureCode, LocalDateTime departureTime, 
+	public Flight createFlight(String flightNumber, String airlineCode, String departureCode, LocalDateTime departureTime, 
 			String arrivalCode, LocalDateTime arrivalTime, double businessTicket, double economyTicket);
 }

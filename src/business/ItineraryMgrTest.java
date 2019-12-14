@@ -23,9 +23,9 @@ public class ItineraryMgrTest extends TestCase {
 	public void testReserveItinerary() {
 		try {
 			setup();
-			Flight f1 = flightMgr.createFlight("998", "DL", "Delta Airlines", "DEN", LocalDateTime.of(2019, Month.DECEMBER, 2, 1, 20),
+			Flight f1 = flightMgr.createFlight("998", "DL", "DEN", LocalDateTime.of(2019, Month.DECEMBER, 2, 1, 20),
 					"ATL", LocalDateTime.of(2019, Month.DECEMBER, 2, 4, 20), 800, 650);
-			Flight f2 = flightMgr.createFlight("999", "DL", "Delta Airlines", "ATL", LocalDateTime.of(2019, Month.DECEMBER, 7, 14, 20),
+			Flight f2 = flightMgr.createFlight("999", "DL", "ATL", LocalDateTime.of(2019, Month.DECEMBER, 7, 14, 20),
 					"DEN", LocalDateTime.of(2019, Month.DECEMBER, 7, 17, 20), 1000, 825);
 			Flight[] fs1 = new Flight[] { f1, f2 };
 			Itinerary i1 = new Itinerary();
@@ -53,9 +53,9 @@ public class ItineraryMgrTest extends TestCase {
 	public void testDeleteItinerary() {
 		try {
 			setup();
-			Flight f1 = flightMgr.createFlight("998", "DL", "Delta Airlines", "DEN", LocalDateTime.of(2019, Month.DECEMBER, 2, 1, 20),
+			Flight f1 = flightMgr.createFlight("998", "DL", "DEN", LocalDateTime.of(2019, Month.DECEMBER, 2, 1, 20),
 					"ATL", LocalDateTime.of(2019, Month.DECEMBER, 2, 4, 20), 800, 650);
-			Flight f2 = flightMgr.createFlight("999", "DL", "Delta Airlines", "ATL", LocalDateTime.of(2019, Month.DECEMBER, 7, 14, 20),
+			Flight f2 = flightMgr.createFlight("999", "DL", "ATL", LocalDateTime.of(2019, Month.DECEMBER, 7, 14, 20),
 					"DEN", LocalDateTime.of(2019, Month.DECEMBER, 7, 17, 20), 1000, 825);
 			Flight[] fs1 = new Flight[] { f1, f2 };
 			Itinerary i1 = new Itinerary();

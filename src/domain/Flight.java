@@ -10,7 +10,6 @@ public class Flight implements Serializable {
 	/* Properties */
 	private String flightNumber;
 	private String airlineCode;
-	private String airlineName;
 	private String departureCode;
 	private LocalDateTime departureTime;
 	private String arrivalCode;
@@ -31,13 +30,6 @@ public class Flight implements Serializable {
 	}
 	public void setAirlineCode(String code) {
 		this.airlineCode = code;
-	}
-	
-	public String getAirlineName() {
-		return this.airlineName;
-	}
-	public void setAirlineName(String name) {
-		this.airlineName = name;
 	}
 	
 	public String getDepartureCode() {
@@ -96,7 +88,7 @@ public class Flight implements Serializable {
 	public boolean validate() {
 		boolean valid = true;
 		
-		if(this.airlineCode == null || airlineName == null || this.flightNumber == null || this.departureCode == null || this.departureTime == null ||
+		if(this.airlineCode == null || this.flightNumber == null || this.departureCode == null || this.departureTime == null ||
 			this.arrivalCode == null || this.arrivalTime == null) {
 			valid = false;
 		}

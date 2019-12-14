@@ -12,51 +12,57 @@ public class MainUI extends JFrame {
 		
 		// Menu //
 		
-		JMenuBar mb = new JMenuBar();
-		setJMenuBar(mb);
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
 		getContentPane().add(theDesktop);
 		
-			JMenu fm = new JMenu("File");
-			mb.add(fm);
-				JMenu sbm = new JMenu("New");
-					JMenuItem nf = new JMenuItem("Flight");
-					JMenuItem nt = new JMenuItem("Traveler");
-					sbm.add(nf);
-				    sbm.add(nt);
-				    fm.add(sbm);
-				JSeparator s1 = new JSeparator();
-				fm.add(s1);
-				JMenuItem ei = new JMenuItem("Exit");
-				
-				fm.add(ei);
+			JMenu fileMenu = new JMenu("File");
+			menuBar.add(fileMenu);
+				JMenu newMenu = new JMenu("New");
+					JMenuItem newFlight = new JMenuItem("Flight");
+					JMenuItem newTraveler = new JMenuItem("Traveler");
+					newMenu.add(newFlight);
+					newMenu.add(newTraveler);
+					fileMenu.add(newMenu);
+				JSeparator sep1 = new JSeparator();
+				fileMenu.add(sep1);
+				JMenuItem exit = new JMenuItem("Exit");
+				fileMenu.add(exit);
 			
-			JMenu vm = new JMenu("View");
-			mb.add(vm);
-				JMenuItem afs = new JMenuItem("All Flights");
-				vm.add(afs);
-				JMenuItem ats = new JMenuItem("All Travelers");
-				vm.add(ats);
+			JMenu viewMenu = new JMenu("View");
+			menuBar.add(viewMenu);
+				JMenuItem allFlights = new JMenuItem("All Flights");
+				viewMenu.add(allFlights);
+				JMenuItem allTravelers = new JMenuItem("All Travelers");
+				viewMenu.add(allTravelers);
 			
-			JMenu usrm = new JMenu("User");
-			mb.add(usrm);
-				JMenuItem lgn = new JMenuItem("Login");
-				
-				usrm.add(lgn);
+			JMenu userMenu = new JMenu("User");
+			menuBar.add(userMenu);
+				JMenuItem login = new JMenuItem("Login");
+				userMenu.add(login);
 		
 		// Action Listeners //
 				
-		ei.addActionListener(new ActionListener() {
+		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		lgn.addActionListener(new ActionListener() {
+		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LoginUI loginUI = new LoginUI("Login");
+				LoginUI loginUI = new LoginUI();
 				loginUI.setVisible(true);
 				theDesktop.add(loginUI);
 			}
 		});
+		newFlight.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CreateFlightUI createFlightUI = new CreateFlightUI();
+				createFlightUI.setVisible(true);
+				theDesktop.add(createFlightUI);
+			}
+		});
+		
 		
 		pack();
 		setVisible(true);	
