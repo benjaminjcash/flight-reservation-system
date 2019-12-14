@@ -170,16 +170,20 @@ public class FlightSvcImpl implements IFlightSvc {
 		airports.put("PSP", "Palm Springs");
 		airports.put("BHM", "Birmingham International Airport");
 		airports.put("DEN", "Denver International Airport");
-		airports.put("ATL", "Atlanta Hartsfield International Airport");
+		airports.put("ATL", "Atlanta Hartsfield Jackson International Airport");
 		airports.put("ANC", "Anchorage International Airport");
 		airports.put("SEA", "Seattle, Tacoma International Airport");
 		airports.put("CRW", "Charleston");
 		airports.put("IAD", "Washington, Dulles International Airport");
+		airports.put("MLI", "Quad Cities International Airport");
+		airports.put("JFK", "John F Kennedy International Airport");
+		airports.put("BOM", "Chattrapathi Shivaji International Airport");
 		
 		airlines.put("AA", "American Airlines");
 		airlines.put("AS", "Alaska Airlines");
 		airlines.put("WN", "Southwest Airlines");
 		airlines.put("DL", "Delta Airlines");
+		airlines.put("AI", "Air India");
 		
 		Flight[] allFlights = getRecords();
 		System.out.println("===All Flights===");
@@ -188,14 +192,17 @@ public class FlightSvcImpl implements IFlightSvc {
 			Flight curr = allFlights[i];
 			LocalDateTime cdt = curr.getDepartureTime();
 			LocalDateTime cat = curr.getArrivalTime();
-			System.out.println(" " + (i + 1) + ". " + airlines.get(curr.getAirlineCode()) + " Flight "  + curr.getFlightNumber());
-			System.out.println("  " + airports.get(curr.getDepartureCode()) + " to " + airports.get(curr.getArrivalCode()));
-			String ddts = "  " + cdt.getDayOfWeek() + ", " + cdt.getMonth() + " " + cdt.getDayOfMonth() + " " + cdt.getHour() + ":" + cdt.getMinute() + cdt.getSecond();
-			String adts = "  " + cat.getDayOfWeek() + ", " + cdt.getMonth() + " " + cat.getDayOfMonth() + " " + cat.getHour() + ":" + cat.getMinute() + cat.getSecond();
-			System.out.println("  Departure Time:" + ddts);
-			System.out.println("  Arrival Time:" + adts);
-			System.out.println("  Business Class Ticket: $" + curr.getbusinessTicket());
-			System.out.println("  Economy Class Ticket: $" + curr.getEconomyTicket());
+			System.out.println((i + 1) + ". " + airlines.get(curr.getAirlineCode()) + " Flight "  + curr.getFlightNumber());
+			System.out.println("   " + airports.get(curr.getDepartureCode()) + " to " + airports.get(curr.getArrivalCode()));
+			String dtm = String.valueOf(cdt.getMinute()).equals("0") ? "00" : String.valueOf(cdt.getMinute());
+			String atm = String.valueOf(cat.getMinute()).equals("0") ? "00" : String.valueOf(cat.getMinute());
+			String ddts = "   " + cdt.getDayOfWeek() + ", " + cdt.getMonth() + " " + cdt.getDayOfMonth() + " " + cdt.getHour() + ":" + dtm;
+			String adts = "   " + cat.getDayOfWeek() + ", " + cdt.getMonth() + " " + cat.getDayOfMonth() + " " + cat.getHour() + ":" + atm;
+			System.out.println("   Departure Time:" + ddts);
+			System.out.println("   Arrival Time:" + adts);
+			System.out.println("   Business Class Ticket: $" + curr.getbusinessTicket() + "0");
+			System.out.println("   Economy Class Ticket: $" + curr.getEconomyTicket() + "0");
+			System.out.println("");
 		}
 	}
 	

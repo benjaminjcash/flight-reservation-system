@@ -51,7 +51,7 @@ public class CreateFlightUI extends JInternalFrame {
 	private JButton submitBtn = new JButton("Submit");
 	
 	public CreateFlightUI() {
-		super("Create Flight", false, false);
+		super("Create Flight", false, true);
 		printFlights();
 		
 		months.put("January", Month.JANUARY);
@@ -68,7 +68,7 @@ public class CreateFlightUI extends JInternalFrame {
 		months.put("December", Month.DECEMBER);
 		
 		Container container = getContentPane();
-		GridLayout layout = new GridLayout(18, 2);
+		GridLayout layout = new GridLayout(17, 2);
 		container.setLayout(layout);
 		container.add(flightNumberLbl);
 		container.add(flightNumberFld);

@@ -7,6 +7,7 @@ import javax.swing.*;
 
 public class MainUI extends JFrame {
 	private JDesktopPane theDesktop = new JDesktopPane();
+	
 	public MainUI() {
 		super("Flight Reservation System");
 		
@@ -40,7 +41,9 @@ public class MainUI extends JFrame {
 			menuBar.add(userMenu);
 				JMenuItem login = new JMenuItem("Login");
 				userMenu.add(login);
-		
+				JMenuItem logout = new JMenuItem("Logout");
+				userMenu.add(logout);
+			
 		// Action Listeners //
 				
 		exit.addActionListener(new ActionListener() {
@@ -60,6 +63,13 @@ public class MainUI extends JFrame {
 				CreateFlightUI createFlightUI = new CreateFlightUI();
 				createFlightUI.setVisible(true);
 				theDesktop.add(createFlightUI);
+			}
+		});
+		newTraveler.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent r) {
+				CreateTravelerUI createTravelerUI = new CreateTravelerUI();
+				createTravelerUI.setVisible(true);
+				theDesktop.add(createTravelerUI);
 			}
 		});
 		

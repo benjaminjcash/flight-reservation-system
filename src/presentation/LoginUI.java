@@ -52,8 +52,10 @@ public class LoginUI extends JInternalFrame {
 						catch (ServiceLoadException e) { System.out.println(e.getMessage()); }
 						
 						System.out.println("Welcome back " + user.getName() + ".");
+						dispose();
 					} else {
 						System.out.println("Authentication failed, unable to login.");
+						dispose();
 					}
 				}
 			}

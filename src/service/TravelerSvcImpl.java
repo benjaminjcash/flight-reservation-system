@@ -220,9 +220,16 @@ public class TravelerSvcImpl implements ITravelerSvc {
 	public void printAllTravelers() throws IOException, ClassNotFoundException, RecordNotFoundException {
 		Traveler[] allTravelers = getRecords();
 		System.out.println("=== All Travelers ===");
+		System.out.println("");		
 		for(int i = 0; i < allTravelers.length; i++) {
 			Traveler curr = allTravelers[i];
 			System.out.println((i + 1) + ". " + curr.getName());
+			System.out.println("   Address: " + curr.getAddress());
+			System.out.println("   Username: " + curr.getUsername());
+			System.out.println("   Password: " + curr.getPassword());
+			System.out.println("   Credit Card Number: " + curr.getCreditCardNumber());
+			System.out.println("   Credit Card Expiration Date: " + curr.getExpirationDate());
+			System.out.println("");
 		}
 	}
 	
