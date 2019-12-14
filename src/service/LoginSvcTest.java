@@ -16,7 +16,7 @@ public class LoginSvcTest extends TestCase {
 		ILoginSvc loginSvc = (ILoginSvc)factory.getService(ILoginSvc.NAME);
 		boolean loggedIn = true;
 		try {
-			loggedIn = loginSvc.login("herecomesjohnny", "test123");
+			loggedIn = loginSvc.login("heresjohnny", "jman55");
 		}
 		catch(RecordNotFoundException e) {
 			System.out.println(e.getMessage());

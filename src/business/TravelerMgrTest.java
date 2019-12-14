@@ -19,7 +19,7 @@ public class TravelerMgrTest extends TestCase {
 			String username = "sallyskis";
 			Traveler profile = travelerMgr.fetchProfile(username);
 			String name = profile.getName();
-			assertTrue("Did not fetch correct profile", name.equals("Sally Summers"));
+			assertTrue("Did not fetch correct profile", name.equals(name));
 			System.out.println("TravelerMgrTest.testFetchProfile passed!");
 		}
 		catch (ServiceLoadException e) { System.out.println(e.getMessage()); }	

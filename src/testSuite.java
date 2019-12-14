@@ -9,6 +9,6 @@ import service.AllServiceLayerTests;
 
 @RunWith(Suite.class)
 @SuiteClasses({ AllBusinessLayerTests.class, AllDomainLayerTests.class, AllServiceLayerTests.class })
-public class AllTests {
+public class testSuite {
 	
 }

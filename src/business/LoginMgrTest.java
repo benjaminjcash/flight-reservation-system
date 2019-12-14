@@ -26,6 +26,7 @@ public class LoginMgrTest extends TestCase {
 			travelerMgr.createProfile(t);
 			boolean success = loginMgr.login("logintestusr", "loginT35T");
 			assertTrue("failed to log in", success);
+			travelerMgr.deleteProfile("logintestusr");
 			System.out.println("LoginMgrTest.testLogin passed!");
 		}
 		catch (RecordNotFoundException e) { System.out.println(e.getMessage()); }
