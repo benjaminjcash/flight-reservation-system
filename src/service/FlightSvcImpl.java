@@ -81,6 +81,18 @@ public class FlightSvcImpl implements IFlightSvc {
 		return didDelete;
 	}
 	
+	public Flight[] fetchAllFlights() {
+		Flight[] flights = new Flight[]{};
+		try {
+			flights = getRecords();
+			return flights;
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return flights;
+	}
+	
 	// Gets all records in store
 	public Flight[] getRecords() throws IOException, ClassNotFoundException, RecordNotFoundException {
 		String filePath = "data/flights.data";

@@ -1,18 +1,16 @@
 package presentation;
-
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 
 public class MainUI extends JFrame {
-	private JDesktopPane theDesktop = new JDesktopPane();
+	private static JDesktopPane theDesktop = new JDesktopPane();
 	
 	public MainUI() {
 		super("Flight Reservation System");
 		
 		// Menu //
-		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
 		getContentPane().add(theDesktop);
@@ -45,7 +43,6 @@ public class MainUI extends JFrame {
 				userMenu.add(logout);
 			
 		// Action Listeners //
-				
 		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -53,33 +50,62 @@ public class MainUI extends JFrame {
 		});
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LoginUI loginUI = new LoginUI();
-				loginUI.setVisible(true);
-				theDesktop.add(loginUI);
+				openLoginUI();
 			}
 		});
 		newFlight.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CreateFlightUI createFlightUI = new CreateFlightUI();
-				createFlightUI.setVisible(true);
-				theDesktop.add(createFlightUI);
+				openCreateFlightUI();
 			}
 		});
 		newTraveler.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent r) {
-				CreateTravelerUI createTravelerUI = new CreateTravelerUI();
-				createTravelerUI.setVisible(true);
-				theDesktop.add(createTravelerUI);
+			public void actionPerformed(ActionEvent e) {
+				openCreateTravelerUI();
 			}
 		});
-		
+		allFlights.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				openViewFlightsUI();
+			}
+		});
 		
 		pack();
 		setVisible(true);	
 	}
 	
+	public static void openCreateFlightUI() {
+		CreateFlightUI createFlightUI = new CreateFlightUI();
+		createFlightUI.setVisible(true);
+		theDesktop.add(createFlightUI);
+	}
+	
+	public static void openCreateTravelerUI() {
+		CreateTravelerUI createTravelerUI = new CreateTravelerUI();
+		createTravelerUI.setVisible(true);
+		theDesktop.add(createTravelerUI);
+	}
+	
+	public static void openLoginUI() {
+		LoginUI loginUI = new LoginUI();
+		loginUI.setVisible(true);
+		theDesktop.add(loginUI);
+		Dimension desktopSize = theDesktop.getSize();
+		Dimension jInternalFrameSize = loginUI.getSize();
+		loginUI.setLocation((desktopSize.width - jInternalFrameSize.width)/2,
+			    (desktopSize.height- jInternalFrameSize.height)/2);
+	}
+	
+	public static void openViewFlightsUI() {
+		ViewFlightsUI allFlightsUI = new ViewFlightsUI();
+		allFlightsUI.setVisible(true);
+		theDesktop.add(allFlightsUI);
+	}
+	
 	public static void main(String[] args) {
-		new MainUI();
+		MainUI mainUI = new MainUI();
+		mainUI.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		mainUI.setVisible(true);
+		openLoginUI();
 	}
 }
  

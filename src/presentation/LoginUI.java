@@ -19,6 +19,7 @@ public class LoginUI extends JInternalFrame {
 	private JTextField usernameFld = new JTextField(10);
 	private JPasswordField passwordFld = new JPasswordField(10);
 	private JButton loginBtn = new JButton("Login");
+	private JButton createProfileBtn = new JButton("Create Profile");
 	
 	public LoginUI() {
 		super("Login", false, true);
@@ -30,6 +31,7 @@ public class LoginUI extends JInternalFrame {
 		container.add(usernameFld);
 		container.add(passwordLbl);
 		container.add(passwordFld);
+		container.add(createProfileBtn);
 		container.add(loginBtn);
 		
 		loginBtn.addActionListener(
@@ -55,11 +57,19 @@ public class LoginUI extends JInternalFrame {
 						dispose();
 					} else {
 						System.out.println("Authentication failed, unable to login.");
-						dispose();
 					}
 				}
 			}
 		);
+		createProfileBtn.addActionListener(
+				new ActionListener() {
+					public void actionPerformed(ActionEvent event) {
+						MainUI.openCreateTravelerUI();
+						dispose();
+					}
+				}
+		);
+		
 		
 		pack();
 		setVisible(true);

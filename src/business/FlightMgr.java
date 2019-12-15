@@ -3,6 +3,7 @@ import service.Factory;
 
 import service.IFlightSvc;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import domain.Flight;
+import exceptions.RecordNotFoundException;
 import exceptions.ServiceLoadException;
 
 public class FlightMgr {
@@ -39,6 +41,11 @@ public class FlightMgr {
 			String arrivalCode, LocalDateTime arrivalTime, double businessTicket, double economyTicket) throws ServiceLoadException {
 		setup();
 		return flightSvc.createFlight(flightNumber, airlineCode, departureCode, departureTime, arrivalCode, arrivalTime, businessTicket, economyTicket);
+	}
+	
+	public Flight[] fetchAllFlights() throws ServiceLoadException {
+		setup();
+		return flightSvc.fetchAllFlights();
 	}
 	
 	public List<Flight> searchForFlights(String departureCode, LocalDateTime departureTime, Integer numberOfPassengers) {		

@@ -52,7 +52,6 @@ public class CreateFlightUI extends JInternalFrame {
 	
 	public CreateFlightUI() {
 		super("Create Flight", false, true);
-		printFlights();
 		
 		months.put("January", Month.JANUARY);
 		months.put("Febuary", Month.FEBRUARY);
@@ -131,8 +130,8 @@ public class CreateFlightUI extends JInternalFrame {
 						flightMgr.publishFlight(newFlight);
 					}
 					catch (Exception e) { System.out.println(e.getMessage()); }
-					printFlights();
 					dispose();
+					MainUI.openViewFlightsUI();
 				}
 			}
 		);
@@ -141,6 +140,7 @@ public class CreateFlightUI extends JInternalFrame {
 		setVisible(true);
 	}
 	
+	// For printing to console
 	public void printFlights() {
 		Factory factory = Factory.getInstance();
 		try { 

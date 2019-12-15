@@ -14,9 +14,9 @@
 //		IFlightSvc flightSvc = (IFlightSvc)factory.getService(IFlightSvc.NAME);
 //		ITravelerSvc travelerSvc = (ITravelerSvc)factory.getService(ITravelerSvc.NAME);
 //		
-//		/////------- FLIGHTS -------/////
-//		Flight[] emptyFlightArr = new Flight[] {};
-//		flightSvc.addRecords(emptyFlightArr);
+////		/////------- FLIGHTS -------/////
+////		Flight[] emptyFlightArr = new Flight[] {};
+////		flightSvc.addRecords(emptyFlightArr);
 //		
 //		/////------- TRAVELERS -------/////		
 //		Traveler[] emptyTravelerArr = new Traveler[] {};
