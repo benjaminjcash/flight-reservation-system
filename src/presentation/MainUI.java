@@ -68,6 +68,11 @@ public class MainUI extends JFrame {
 				openViewFlightsUI();
 			}
 		});
+		allTravelers.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				openViewTravelersUI();
+			}
+		});
 		
 		pack();
 		setVisible(true);	
@@ -101,6 +106,12 @@ public class MainUI extends JFrame {
 		theDesktop.add(allFlightsUI);
 	}
 	
+	public static void openViewTravelersUI() {
+		ViewTravelersUI allTravelersUI = new ViewTravelersUI();
+		allTravelersUI.setVisible(true);
+		theDesktop.add(allTravelersUI);
+	}
+ 	
 	public static void main(String[] args) {
 		MainUI mainUI = new MainUI();
 		mainUI.setExtendedState(JFrame.MAXIMIZED_BOTH);

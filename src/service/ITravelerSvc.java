@@ -5,6 +5,7 @@ import domain.Traveler;
 import java.io.IOException;
 
 import exceptions.RecordNotFoundException;
+import exceptions.ServiceLoadException;
 import domain.Itinerary;
 
 public interface ITravelerSvc extends IService {
@@ -15,6 +16,8 @@ public interface ITravelerSvc extends IService {
 	public boolean createProfile(Traveler traveler) throws IOException, ClassNotFoundException;
 	
 	public boolean deleteProfile(String username);
+	
+	public Traveler[] fetchAllProfiles() throws ServiceLoadException;
 	
 	public boolean addPaymentInformation(String username, String creditCardNumber, String expirationDate);
 	

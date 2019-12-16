@@ -6,32 +6,33 @@ import java.io.IOException;
 import domain.Traveler;
 import exceptions.ServiceLoadException;
 import service.Factory;
+import service.IFlightSvc;
 import service.ITravelerSvc;
 
 public class TravelerMgr {
-	private Factory factory;
+	private ITravelerSvc travelerSvc;
+	private void setup() throws ServiceLoadException {
+		Factory factory = Factory.getInstance();
+		travelerSvc = (ITravelerSvc) factory.getService(ITravelerSvc.NAME);
+	}
 	
 	public boolean createProfile(Traveler traveler) throws ServiceLoadException, ClassNotFoundException, IOException {
-		boolean success = false;
-		factory = Factory.getInstance();
-		ITravelerSvc travelerSvc = (ITravelerSvc)factory.getService(ITravelerSvc.NAME);
-		success = travelerSvc.createProfile(traveler);
-		return success;
+		setup();
+		return travelerSvc.createProfile(traveler);
 	}
 	
 	public Traveler fetchProfile(String username) throws ServiceLoadException {
-		factory = Factory.getInstance();
-		ITravelerSvc travelerSvc = (ITravelerSvc)factory.getService(ITravelerSvc.NAME);
-		Traveler profile = travelerSvc.fetchProfile(username);
-		return profile;
+		setup();
+		return travelerSvc.fetchProfile(username);
 	}
 	
 	public boolean deleteProfile(String username) throws ServiceLoadException {
-		boolean success = false;
-		factory = Factory.getInstance();
-		ITravelerSvc travelerSvc = (ITravelerSvc)factory.getService(ITravelerSvc.NAME);
-		success = travelerSvc.deleteProfile(username);
-		return success;
+		setup();
+		return travelerSvc.deleteProfile(username);
 	}
 	
+	public Traveler[] fetchAllProfiles() throws ServiceLoadException {
+		setup();
+		return travelerSvc.fetchAllProfiles();
+	}
 }

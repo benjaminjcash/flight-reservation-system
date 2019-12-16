@@ -85,7 +85,6 @@ public class FlightSvcImpl implements IFlightSvc {
 		Flight[] flights = new Flight[]{};
 		try {
 			flights = getRecords();
-			return flights;
 		}
 		catch(Exception e) {
 			System.out.println(e.getMessage());

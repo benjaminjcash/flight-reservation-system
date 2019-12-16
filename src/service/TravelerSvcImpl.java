@@ -76,6 +76,17 @@ public class TravelerSvcImpl implements ITravelerSvc {
 		return didDelete;
 	}
 	
+	public Traveler[] fetchAllProfiles() {
+		Traveler[] travelers = new Traveler[]{};
+		try {
+			travelers = getRecords();
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return travelers;
+	}
+	
 	public boolean addPaymentInformation(String username, String creditCardNumber, String expirationDate) {
 		boolean didWrite = true;
 		Traveler toBeUpdated = new Traveler();
